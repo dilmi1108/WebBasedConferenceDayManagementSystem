@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conference Management System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f9f9f9;
+            color: #333;
+            text-align: center;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: #333;
+            color: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-image {
+            height: 40px;
+            margin-right: 10px;
+        }   
+
+
+        .navbar .logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .navbar a:hover {
+            color: #b31504;
+        }
+
+        .hero-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(to right, #333, #504e4e);
+            color: #fff;
+            padding: 4rem 1rem;
+        }
+
+        .hero-section h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            padding: 0.75rem 1.5rem;
+            background: #e71313;
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 25px;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .cta-button:hover {
+            background: #e85d5d;
+            transform: scale(1.05);
+        }
+
+        .section {
+            padding: 3rem 1rem;
+            text-align: center;
+        }
+
+        .section h1 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #333;
+        }
+
+        .dashboard-container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 280px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card h2 {
+            color: #333;
+            margin: 1rem 0;
+        }
+
+        .card button {
+            padding: 0.5rem 1rem;
+            background: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .card button:hover {
+            background: #333;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 1rem;
+            background: #333;
+            color: #fff;
+            margin-top: 2rem;
+        }
+
+        .footer p {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="logo">
+        <a href="https://itum.mrt.ac.lk/" target="_blank" class="logo">
+            <img src="data:image/png;base64,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" alt="ITUM_Logo"></a>
+        </div>
+            <nav>
+            <ul>
+                <li><a href="register.html">Register</a></li>
+                <li><a href="#dashboard">Dashboard</a></li>
+                <li><a href="#keynotes">KeyNotes</a></li>
+                <li><a href="signin.html">Sign In</a></li> 
+                <li><a href="#about">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1>Welcome to the International Research Conference of ITUM</h1>
+            <p>Manage your conference experience seamlessly.</p>
+            <a href="register.html" class="cta-button">Register</a>
+        </div>
+    </section>
+
+    <!-- Dashboard Section -->
+    <section id="dashboard" class="section">
+        <h1>Dashboard</h1>
+        <div class="dashboard-container">
+            <div class="card">
+                <h2>Overall Schedule</h2>
+                <p>View the conference schedule.</p>
+                <a href="timetable.html" class="card-button">
+                    <button>Time Table</button>
+                </a>
+            </div>
+            <div class="card">
+                <h2>Session Details</h2>
+                <p>View session details.</p>
+                <a href="session.html" class="card-button">
+                    <button>Session</button>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Keynote Speakers -->
+    <section id="keynotes" class="section">
+        <h1>KEYNOTE SPEAKERS PROFILES </h1>
+        <div class="dashboard-container">
+            <div class="card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZpj38y0IVgLqTzOxZY5xPSbtKZddA9xvlCg&s" alt="Prof. Michael Pecht" class="speaker-photo">
+                <h2>PROF. MICHAEL PECHT</h2>
+                <p>Prof. Michael Pecht is a distinguished authority in reliability engineering and prognostics health management, with numerous publications and patents to his credit.</p>
+            </div>
+
+            <div class="card">
+                <img src="https://images.stockcake.com/public/b/9/5/b9503342-1b81-4e14-9c64-0f3a505393cb_medium/professor-lecturing-students-stockcake.jpg" alt="Prof. Michael Pecht" class="speaker-photo">
+                <h2>PROF. AMIN ABBOSH</h2>
+                <p>Prof. Amin Abbosh specializes in advanced communication systems and antenna design, driving innovation in wireless technologies.</p>
+            </div>
+
+            <div class="card">
+                <img src="https://images.stockcake.com/public/7/f/d/7fd85ee3-27e5-4323-9577-d434a9fc4914_medium/professor-leading-lecture-stockcake.jpg" alt="Prof. Michael Pecht" class="speaker-photo">
+                <h2>PROF. MOHAN RAJESH ELARA</h2>
+                <p>Prof. Mohan Rajesh Elara is renowned for his groundbreaking work in robotics and autonomous systems, pushing the boundaries of modern technology.</p>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <h1>About Us</h1>
+        <p>We aim to foster collaboration and innovation through seamless conference management.</p>
+    </section>
+
+    <h2 class="title">Contact Info</h2>
+    
+    <div class="content">
+    
+          <div class="text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p><strong>INSTITUTE OF TECHNOLOGY</strong><br />
+                University of Moratuwa,<br />
+                Diyagama,<br />
+                Homagama,<br />
+                Sri Lanka.</p>
+
+                <p>TEL: (+94) 112 124 000<br />
+                FAX: (+94) 112 117 040<br />
+                EMAIL: info@itum.mrt.ac.lk<br /><br />
+                Student Affairs Division<br />
+                TEL: (+94) <span data-auto-logging-id="f1d77f51a1aadbe" data-surface="/bizweb:all" data-surface-wrapper="1" style="display: contents;"><span><span>113 460 406</span></span></span><br />
+                EMAIL: ar-welfare@itum.mrt.ac.lk</p>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 International Research Conference</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <form class="registration-form" method="POST" action="register.php"></form>
+</body>
+</html>

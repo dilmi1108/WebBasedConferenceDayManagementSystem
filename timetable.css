@@ -1,0 +1,78 @@
+body {
+    font-family: 'Roboto', Arial, sans-serif;
+    margin: 20px;
+    line-height: 1.6;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+h1 {
+    text-align: center;
+    font-size: 2em;
+    color: #444;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 16px;
+    text-align: left;
+    background-color: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+thead {
+    background-color:#333;
+    color: #ffffff;
+}
+
+th, td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    font-size: 1.2em;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #eaf4fc;
+    transition: background-color 0.3s;
+}
+
+td {
+    font-size: 0.95em;
+    color: #555;
+}
+
+.caption {
+    text-align: center;
+    font-size: 1.1em;
+    margin-top: 10px;
+    color: #666;
+}
+
+/* Add rounded buttons to the first column */
+td:first-child {
+    font-weight: bold;
+    color: #ffffff;
+    background-color:#333;
+    text-align: center;
+    border-radius: 5px;
+}
+
+/* Add transition for hover effects */
+td:first-child:hover {
+    background-color: #333;
+    transition: background-color 0.3s;
+}
